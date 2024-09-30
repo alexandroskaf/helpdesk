@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_$0piyib=#^p6=k8c4xvv=mtx)*od!)ew$8xw0x_tvqels%k!w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.16.4.153', 'localhost', '127.0.0.1']
 
 
 LOGOUT_REDIRECT_URL = '/'
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'room',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -58,8 +59,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    "https://172.16.4.153",  # Replace with your other app's URL
+]
 ROOT_URLCONF = 'djangochat.urls'
 
 TEMPLATES = [
@@ -157,9 +161,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+CSRF_COOKIE_NAME = 'csrftoken_app2'
+SESSION_COOKIE_NAME = 'ap2_sessionid'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ALLOW_ALL_ORIGINS = True

@@ -1,16 +1,14 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Rooms | {% endblock %}
+{% block title %}HELPDESK | {% endblock %}
 
 {% block content %}
 <div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
+    <h1 class="text-3xl lg:text-6xl text-white">ΣΥΝΟΜΙΛΙΕΣ HELPDESK</h1>
 </div>
-{% if request.user.is_superuser %}
-    <a href="{% url 'create_room' %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">
-        Create Room
-    </a>
-{% endif %}
+
+    <a href="{% url 'create_room' %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">ΔΗΜΙΟΥΡΓΙΑ ΣΥΝΟΜΙΛΙΑΣ</a>
+
 
 <div class="w-full flex flex-wrap items-center">
     {% for room in rooms %}
@@ -20,6 +18,10 @@
 
                 <a href="{% url 'room' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join</a>
             </div>
+        </div>
+    {% empty %}
+        <div class="w-full text-center p-4">
+            <p class="text-lg">ΔΕΝ ΑΝΗΚΕΤΕ ΣΕ ΚΑΠΟΙΑ ΣΥΝΟΜΙΛΙΑ</p>
         </div>
     {% endfor %}
 </div>
